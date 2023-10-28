@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
                 onPressed: _incrementCounter,
                 child: Text(
-                  'ABC',
+                  'ekle',
                 )
             ),
           ],
