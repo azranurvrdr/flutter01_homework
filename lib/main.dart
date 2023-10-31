@@ -78,8 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('TÜRK BAYRAĞI'),
 
       ),
-      body: Stack(
-        children: [Column(
+      body: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -93,12 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-          //mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Card(
-                child:
-                Image(image:
-                AssetImage('images/bayrak_2.png'),
+                child: SizedBox(
+                  child: Image(image:
+                  AssetImage('images/bayrak_2.png'),
+                  ),
                 ),
               ),
 
@@ -147,8 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
             ],
         ),
-        ],
-      ),
-    );
+      );
   }
 }
