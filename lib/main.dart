@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Card(
                 child: SizedBox(
                   child: Image(image:
-                  AssetImage('images/bayrak_2.png'),
+                  AssetImage('images/bayrakkk.jpg'),
                   ),
                 ),
               ),
@@ -138,8 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ListTile(
                       title: Text('10) Bayrak, Türkiye nin ulusal egemenliği ve bağımsızlığını sembolize eder.'),
                     ),
-
-
 
                   ],
                 ),
