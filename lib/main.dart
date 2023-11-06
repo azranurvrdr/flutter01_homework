@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red.shade700),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -55,9 +55,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
 
-
-
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('TÜRK BAYRAĞI'),
-
+        title: Text(widget.title),
       ),
-      body: Column(
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -92,59 +103,23 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Card(
-                child: SizedBox(
-                  child: Image(image:
-                  AssetImage('images/bayrakkk.jpg'),
-                  ),
-                ),
-              ),
-
-              Expanded(
-                child: ListView(
-                  children: [
-                    ListTile(
-                      title: Text('OZELLİKLER'),
-                    ),
-                    ListTile(
-                      title: Text('1) Ekranda Türk bayrağı resmi bulunuyor.'),
-                    ),
-                    ListTile(
-                      title: Text('2) Türk bayrağı bir hilal ve bir adet beş köşeli yıldızdan oluşur.'),
-                    ),
-                    ListTile(
-                      title: Text('3) Bayrağın rengi kırmızıdır ve üzerindeki ay-yıldızın rengi beyazdır.'),
-                    ),
-                    ListTile(
-                      title: Text('4) Türk bayrağı, 29 Mayıs 1936 da kabul edilmiştir.'),
-                    ),
-                    ListTile(
-                      title: Text('5) Bayrak, Türkiyenin sınırları içinde ve dışında resmi olarak kullanılır.'),
-                    ),
-                    ListTile(
-                      title: Text('6) Türk bayrağı, 20. yüzyılın en tanınmış bayraklarından biridir.'),
-                    ),
-                    ListTile(
-                      title: Text('7) Bayrak, genellikle kamusal binalarda, okullarda ve resmi törenlerde görülür.'),
-                    ),
-                    ListTile(
-                      title: Text('8) Bayrağın kabul edildiği 29 Mayıs, Türkiye de "Bayram" olarak kutlanır.'),
-                    ),
-                    ListTile(
-                      title: Text('9) Bayrağın tasarımı, İstiklal Savaşı nın sembolizmini yansıtır.'),
-                    ),
-                    ListTile(
-                      title: Text('10) Bayrak, Türkiye nin ulusal egemenliği ve bağımsızlığını sembolize eder.'),
-                    ),
-
-                  ],
-                ),
-              ),
-
-            ],
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
         ),
-      );
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
