@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Adding App',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red.shade700),
       ),
       home: MyHomePage(),
     );
@@ -144,6 +144,19 @@ class _AddingPageState extends State<AddingPage> {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
 
+  Future<bool> _onWillPop() async {
+    if (widget.people.length >= 3) {
+      return true; // Geri gitmeye izin ver
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('En az 3 kişi ekleyin.'),
+        ),
+      );
+      return false; // Geri gitmeyi engelle
+    }
+  }
+
   void _addPerson() {
     final name = nameController.text;
     final age = ageController.text;
@@ -173,51 +186,74 @@ class _AddingPageState extends State<AddingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Adding Page'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(labelText: 'İsim'),
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Adding Page'),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(labelText: 'İsim'),
+                    ),
                   ),
-                ),
-                SizedBox(width: 15),
-                Expanded(
-                  child: TextField(
-                    controller: ageController,
-                    decoration: InputDecoration(labelText: 'Yaş'),
-                    keyboardType: TextInputType.number,
+                  SizedBox(width: 15),
+                  Expanded(
+                    child: TextField(
+                      controller: ageController,
+                      decoration: InputDecoration(labelText: 'Yaş'),
+                      keyboardType: TextInputType.number,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: _addPerson,
-              child: Text('Ekle'),
-            ),
-            ElevatedButton(
-              onPressed: _navigateBack,
-              child: Text('Geri Dön'),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: widget.people.length,
-                itemBuilder: (context, index) {
-                  final person = widget.people[index];
-                  return ListTile(
-                    title: Text('${person.name} ${person.age}'),
-                  );
-                },
+                ],
               ),
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: _addPerson,
+                    child: Text('Ekle'),
+                  ),
+
+                  SizedBox(
+                    width: 10,
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      if(widget.people.length >= 3) {
+                        _navigateBack();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text('En az 3 kişi ekleyin.'),
+                          ),
+                        );
+                      }
+                    },
+                    child: Text('Geri Dön'),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: widget.people.length,
+                  itemBuilder: (context, index) {
+                    final person = widget.people[index];
+                    return ListTile(
+                      title: Text('${person.name} ${person.age}'),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
