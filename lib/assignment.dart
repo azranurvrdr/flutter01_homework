@@ -100,4 +100,10 @@ liste1.addAll(liste2);  //liste1'e liste2'nin elemanları eklendi
 
 print(liste1); // [1, 2, 3, 4, 5, 6]
 
+//yada 'spread operator' (...) kullanılabilir.
+
+List<int> degisenListe = [...liste1, ...liste2];
+
+  print(degisenListe); // [1, 2, 3, 4, 5, 6]
+
  */
