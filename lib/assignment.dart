@@ -1,9 +1,9 @@
 /*
 
 // 1- Bir fonksiyonu asenkron yapmak için ne yapmalısınız?
-// Fonksiyonun başına `async` eklemeniz gerekir
+// Fonksiyona `async` eklemeniz gerekir
 
-async void asyncFonksiyonu() {
+void asyncFonksiyonu() async{
   // ...
 }
 
