@@ -34,7 +34,7 @@ void main() {
 // 3- Await ifadesi ne işe yaramaktadır?
 // asenkron bir işlemin sonucunu beklememizi sağlar.
 
-async void asyncFonksiyonu() {
+void asyncFonksiyonu() async{
   String isim = await isimAl();
   print(isim);
 }
